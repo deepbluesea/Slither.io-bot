@@ -36,7 +36,9 @@ window.getSnakeWidth = function(sc) {
     if (sc === undefined) sc = window.snake.sc;
     return sc * 29.0;
 };
-
+var original_redraw = window.redraw.toString();
+    var new_redraw = original_redraw.replace('gsc!=f&&(gsc<f?(gsc+=2E-4,gsc>=f&&(gsc=f)):(gsc-=2E-4,gsc<=f&&(gsc=f)))', '');
+    window.redraw = new Function(new_redraw.substring(new_redraw.indexOf('{')+1,new_redraw.lastIndexOf('}')));
 var canvas = (function() {
     return {
         // Ratio of screen size divided by canvas size.
